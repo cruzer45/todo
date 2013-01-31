@@ -1,30 +1,45 @@
 
-var sock = new SockJS('http://localhost:8585/events');
+//var sock = new SockJS(window.location.protocol + '//' + window.location.hostname + ':8585'  + '/events');
 
-var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':8585'  + '/events');
 
-sock.onopen = function() {
-	console.log('open');
+var address = 'todo.todoAdded';
+
+
+var handler = function(message) {
+	if(message) {alert('Received message ' + message.message);}
 };
 
-sock.onmessage = function(e) {
+eb.onopen = function() {
+	console.log('open');
+	eb.registerHandler(address, handler);
+};
+
+eb.onmessage = function(e) {
 	console.log('message', e.data);
 	alert('received message echoed from server: ' + e.data);
 };
 
-sock.onclose = function() {
+eb.onclose = function() {
 	console.log('close');
 };
 
 function send(message) {
 
-	if (sock.readyState == WebSocket.OPEN) {
-		console.log("sending message")
-		sock.send(message);
-	} else {
+	var result = eb.readyState(); 
+	console.log(result);
+	console.log(vertx.EventBus.OPEN);
+	console.log(address);
+	console.log(message);
+
+	if (eb.readyState() == vertx.EventBus.OPEN) {
+		console.log("sending message");
+		eb.publish(address, {message:message});
+	} 
+	else {
 		console.log("The socket is not open.");
 	}
-}
+};
 
 function TodoCtrl($scope, $routeParams, $http){
 	$scope.todos = [];
@@ -49,4 +64,4 @@ function TodoCtrl($scope, $routeParams, $http){
 
 	 // when we first stat up, load todos
 	 $scope.list()
-	}
+};

@@ -139,8 +139,8 @@ var vertx = vertx || {};
     }
   
     function sendOrPub(sendOrPub, address, message, replyHandler) {
-      checkSpecified("address", 'string', address);
-      checkSpecified("message", 'object', message);
+      //checkSpecified("address", 'string', address);
+      //checkSpecified("message", 'object', message);
       checkSpecified("replyHandler", 'function', replyHandler, true);
       checkOpen();
       var envelope = { type : sendOrPub,

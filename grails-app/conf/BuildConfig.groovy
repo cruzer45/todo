@@ -47,7 +47,9 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
-        runtime 'org.vert-x:vertx-core:1.3.1.final'
+        runtime "org.vert-x:vertx-lang-groovy:1.3.0.final"
+        runtime "org.vert-x:vertx-lang-java:1.3.0.final"
+        //runtime 'org.vert-x:vertx-core:1.3.1.final'
     }
 
     plugins {

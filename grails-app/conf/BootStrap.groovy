@@ -6,11 +6,13 @@ class BootStrap {
 
     	def vertx = Vertx.newVertx()
 		def httpServer = vertx.createHttpServer()
-		vertx.createSockJSServer(httpServer).installApp(prefix: '/events') { sock ->
-			sock.dataHandler { buff ->
-				sock << buff
-			}
-		}
+		def server = vertx.createSockJSServer(httpServer)
+        server.bridge([prefix: '/events'], [[:]], [[:]])
+        //server.installApp(prefix: '/events') { sock ->
+        //    sock.dataHandler { buff ->
+		//		sock << buff
+		//	}
+		//}
 		httpServer.listen(8585)
 
 
