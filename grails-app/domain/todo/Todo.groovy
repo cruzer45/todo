@@ -9,6 +9,7 @@ class Todo {
     }
 
     String toString(){
-    	description
+    	description(bank:false)
+    	done()
     }
 }
