@@ -9,7 +9,7 @@ class TodoService {
 	def eventBusService
 	def address = "todo"
 
-	def save = { description ->
+	def save(description) { 
 		def todoInstance = new Todo(description:description,done:false)
 		if (todoInstance.save(flush: true)) {
 			eventBusService.publish(address, ['message':"New item added to list:" + description])
@@ -17,7 +17,7 @@ class TodoService {
 		return
 	}
 
-	def toggleStatus = { id ->
+	def toggleStatus(id) {
 		def todoInstance = Todo.get(id)
 		if (todoInstance) {			
 			todoInstance.done = !todoInstance.done

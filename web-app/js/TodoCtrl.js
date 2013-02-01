@@ -21,8 +21,8 @@ function TodoCtrl($scope, $routeParams, $http){
 			$scope.todos = data	})
 	};
 
-	$scope.toggleStatus = function(id, version){
-		$http.post("todo/toggleStatus?id="+id);	
+	$scope.toggleStatus = function(id){
+		$http.put("todo/toggleStatus",{id:id});	
 	};
 
 	$scope.addTodo = function(){
