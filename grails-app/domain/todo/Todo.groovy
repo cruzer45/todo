@@ -6,10 +6,15 @@ class Todo {
 	String description
 
     static constraints = {
+    	description(bank:false)
+    	done()
     }
 
     String toString(){
-    	description(bank:false)
-    	done()
+    	description
+    }
+
+    def beforeValidate(){
+    	description = description?.trim()?.capitalize()
     }
 }
