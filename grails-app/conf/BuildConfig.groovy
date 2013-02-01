@@ -2,8 +2,8 @@ grails.servlet.version = "2.5" // Change depending on target container complianc
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
@@ -31,9 +31,6 @@ grails.project.dependency.resolution = {
         mavenLocal()
         mavenCentral()
 
-        mavenRepo "https://repo.springsource.org/libs-milestone/"
-        mavenRepo "https://oss.sonatype.org/content/repositories/snapshots/"
-
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
@@ -45,6 +42,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         // runtime 'mysql:mysql-connector-java:5.1.20'
+        runtime "org.vert-x:vertx-lang-groovy:1.3.0.final"
+        runtime "org.vert-x:vertx-lang-java:1.3.0.final"
     }
 
     plugins {
@@ -61,9 +60,6 @@ grails.project.dependency.resolution = {
 
         runtime ":database-migration:1.2.1"
 
-        compile ':cache:1.0.1'
-
-        compile ":events-si:1.0.M3"
-        compile ":events-push:1.0.M7"
+        compile ':cache:1.0.1'    
     }
 }
