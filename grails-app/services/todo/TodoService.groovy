@@ -17,17 +17,18 @@ class TodoService {
 		return
 	}
 
-	def toggleStatus = { id,version ->
+	def toggleStatus = { id ->
 		def todoInstance = Todo.get(id)
-
-		if (todoInstance && (todoInstance.version == version as int)) {
-			Todo.lock(id)
+		if (todoInstance) {			
 			todoInstance.done = !todoInstance.done
-			todoInstance.save(flush: true)
-		}
-		else{
-			println("Todo version info for to #" + id + " was off... Aboting.")
-			println("Expected " + version + " and got " + todoInstance.version)
+			try {
+				Todo.withTransaction {
+					todoInstance.save(flush: true)
+				}
+			}
+			catch (Exception e) {
+				log.info "Exception for ${todoInstance}"
+			}
 		}
 		eventBusService.publish(address, ['message':"Item status toggled:" + todoInstance.description] )
 		return

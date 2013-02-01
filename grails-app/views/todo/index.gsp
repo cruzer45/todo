@@ -15,7 +15,7 @@
 	<body>
 		<div class="container" ng-controller="TodoCtrl">
 			<h1>
-				Todos
+				Todo Mashup - Grails + Vert.x + Angular Js
 			</h1>
 			<hr>
 			<form ng-submit="addTodo()">

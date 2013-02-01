@@ -23,7 +23,7 @@ class TodoController {
 	}
 
 	def toggleStatus() {
-        todoService.toggleStatus(params.id, params.version)
+        todoService.toggleStatus(params.id)
         render ""
 	}
 }
