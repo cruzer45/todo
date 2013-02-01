@@ -7,7 +7,7 @@ class TodoController {
 
     def todoService
 
-	static allowedMethods = [list:"GET", save: "POST", complete: "POST"]
+	static allowedMethods = [list:"GET", save: "POST", toggleStatus: "POST"]
 
 	def index() {
 		render(view:"index.gsp")
@@ -19,11 +19,11 @@ class TodoController {
 
 	def save() {
         todoService.save(request.JSON.description)
-        render ""
+        render "Action Successful"
 	}
 
 	def toggleStatus() {
         todoService.toggleStatus(params.id)
-        render ""
+        render "Action Successful"
 	}
 }

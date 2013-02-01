@@ -21,14 +21,7 @@ class TodoService {
 		def todoInstance = Todo.get(id)
 		if (todoInstance) {			
 			todoInstance.done = !todoInstance.done
-			try {
-				Todo.withTransaction {
-					todoInstance.save(flush: true)
-				}
-			}
-			catch (Exception e) {
-				log.info "Exception for ${todoInstance}"
-			}
+			todoInstance.save(flush: true)
 		}
 		eventBusService.publish(address, ['message':"Item status toggled:" + todoInstance.description] )
 		return

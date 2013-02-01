@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app>
 	<head>
-		<title>Todo Mashup - Grails + Vert.x + Angular Js</title>
+		<title>Todo Mashup - Grails + Vert.x + AngularJs</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 		<script src="js/angular.js" type="text/javascript"></script>
@@ -15,8 +15,9 @@
 	<body>
 		<div class="container" ng-controller="TodoCtrl">
 			<h1>
-				Todo Mashup - Grails + Vert.x + Angular Js
+				Todo Mashup 
 			</h1>
+			<h3>Grails + Vert.x + AngularJs</h3>
 			<hr>
 			<form ng-submit="addTodo()">
 				<input ng-model="description" id="description" type="text"/> 

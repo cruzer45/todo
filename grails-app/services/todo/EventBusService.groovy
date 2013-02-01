@@ -1,7 +1,7 @@
 package todo
 
 import org.vertx.groovy.core.Vertx
-import org.springframework.beans.factory.DisposableBean
+import javax.annotation.PreDestroy;
 
 class EventBusService {
 
@@ -10,7 +10,7 @@ class EventBusService {
 	def httpServer
 	
 	def createServer = {
-		println("Starting up vertx server")
+		log.info("Starting up vertx server")
 		vertx = Vertx.newVertx()
 		httpServer = vertx.createHttpServer()
 		def server = vertx.createSockJSServer(httpServer)
@@ -24,8 +24,9 @@ class EventBusService {
 		eb.publish(address, message)
 	}
 	
-    def destroy = {
-    	println("Shutting down vertx server")
+	@PreDestroy
+    def destroy() {
+    	log.info("Shutting down vertx server")
 		httpServer.close()
 	}
 }
