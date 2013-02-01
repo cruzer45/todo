@@ -17,10 +17,13 @@ function TodoCtrl($scope, $routeParams, $http){
 	};
 
 	$scope.list = function(){
-		$http.get("todo/list").success( function( data ) {	$scope.todos = data	})
+		$http.get("todo/list").success( function( data ) {	
+			console.log(data);
+			$scope.todos = data	})
 	};
 
-	$scope.toggleStatus = function(id){
+	$scope.toggleStatus = function(id, version){
+		console.log("about to try to toggle todo #" + id);
 		$http.post("todo/toggleStatus?id="+id);	
 	};
 
